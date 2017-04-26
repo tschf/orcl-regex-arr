@@ -13,7 +13,7 @@ as
         select regexp_substr(p_input_str, p_match_pattern, 1, level) str
         bulk collect into l_string_matches
         from dual
-        connect by level <= regexp_count(p_input_str, '\w+')
+        connect by level <= regexp_count(p_input_str, p_match_pattern)
         order by level asc;
 
         return l_string_matches;
