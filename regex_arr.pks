@@ -2,6 +2,9 @@ create or replace package regex_arr
 as
 
     --Record type to store the array of matches into
+    --make a subtype of dbms_sql.varchar2a so we don't rely on parent types
+    --(can change the underlying type in future if need be, without breaking
+    --code that uses this utility)
     subtype t_string_list is dbms_sql.varchar2a;
 
     -- get_matches accepts two arguments:
